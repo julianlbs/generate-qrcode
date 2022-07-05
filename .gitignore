@@ -1,0 +1,5 @@
+# ignore all images png
+*.png
+
+# ignore node_modules
+node_modules

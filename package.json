@@ -1,0 +1,23 @@
+{
+  "name": "sistemas-operacionais",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cluster-processing.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "synchronous",
+    "asynchronous",
+    "parallel"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "js2xmlparser": "^4.0.2",
+    "jspdf": "^2.5.1",
+    "node-fetch": "^3.2.6",
+    "qrcode": "^1.5.0"
+  }
+}
