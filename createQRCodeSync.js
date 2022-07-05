@@ -14,4 +14,4 @@ async function createQRCode(users) {
 createQRCode(users);
 
 const end = Date.now();
-console.log(`Execution time: ${end - start} ms OR  ${(end - start) / 1000} s`);
+console.log(`Execution time: ${end - start} ms |  ${(end - start) / 1000} s`);
