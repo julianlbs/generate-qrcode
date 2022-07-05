@@ -1,0 +1,43 @@
+Sincrono:
+16,571
+16,252
+16,557
+16,524
+médio: 16,474
+
+Assincrono 1 thread:
+18,965
+19,217
+19,106
+19,12
+medio: 19,10s
+
+Assincrono 2 threads:
+13,261
+13,217
+13,483
+13,556
+medio: 13,38s
+
+Assincrono 3 threads
+12,623
+11,932
+11,337
+11,429
+medio: 11,83s
+
+Assincrono 4 threads
+10,695
+10,732
+11,06
+10,726
+medio: 10,80s
+
+Assincrono 8 threads
+9,683
+9,615
+9,423
+9,302
+medio: 9,51s
+
+

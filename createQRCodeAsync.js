@@ -6,25 +6,33 @@ import { cpus } from "node:os";
 import process from "node:process";
 
 const start = Date.now();
-const start2 = Date.now();
 
-const numCPUs = 2;
+// Quantidade de threads criadas
+const numCPUs = 8;
+
+// Lê lista de usuários
 const users = JSON.parse(fs.readFileSync("users.json").toString());
 
 const saveImages = async () => {
 	async function createQRCode(users) {
+		// Distribui os processos entre as threads
 		const clusterUsers = users.filter(
 			(_, index) => index % numCPUs === cluster.worker.id - 1
 		);
 
 		for (const user of clusterUsers) {
-			await QRCode.toFile(`./qrcode-images/${user.id}.png`, user.cpf);
-			console.log(`${cluster.worker.id} salvou a imagem ${user.id}.png`);
+			// Gera e salva os QRCode em imagens
+			await QRCode.toFile(`./qrcode-images/${user.id}.png`, user.cpf).then(
+				() => {
+					console.log(`${cluster.worker.id} salvou a imagem ${user.id}.png`);
+				}
+			);
 		}
 
+		// Calcula o tempo de execução
 		const end = Date.now();
 		console.log(
-			`Execution time: ${end - start} ms |  ${(end - start) / 1000} s`
+			`Tempo de Execução: ${end - start} ms |  ${(end - start) / 1000} s`
 		);
 	}
 
@@ -32,11 +40,12 @@ const saveImages = async () => {
 		console.log(`Number of CPUs is ${numCPUs}`);
 		console.log(`Primary ${process.pid} is running`);
 
-		// Fork workers.
+		// Cria threads (workers).
 		for (let i = 0; i < numCPUs; i++) {
 			cluster.fork();
 		}
 	} else {
+		// Código executado por cada thread
 		console.log(`Worker ${cluster.worker.id} started`);
 
 		await createQRCode(users)
